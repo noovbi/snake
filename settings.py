@@ -1,0 +1,15 @@
+# Configuraciones del juego
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 600
+GRID_SIZE = 20
+GRID_WIDTH = SCREEN_WIDTH // GRID_SIZE
+GRID_HEIGHT = SCREEN_HEIGHT // GRID_SIZE
+
+# Colores
+BG_COLOR = (0, 0, 0)
+SNAKE_COLOR = (0, 255, 0)
+FOOD_COLOR = (255, 0, 0)
+TEXT_COLOR = (255, 255, 255)
+
+# Velocidad del juego
+SPEED = 10
