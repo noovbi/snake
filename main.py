@@ -1,34 +1,28 @@
-import pygame, sys
+import pygame
+import sys
 from settings import *
 from game import Snake, Food
 from sound import SoundManager
+from menu import MainMenu
 
-def main():
-    pygame.init()
-    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    pygame.display.set_caption("Snake Game")
+def game_loop(screen):
     clock = pygame.time.Clock()
-    
     snake = Snake()
     food = Food()
-    sound = SoundManager()
     font = pygame.font.Font(None, 36)
     
     game_over = False
     paused = False
-    sound.play('background', loops=-1)  
-    
+
     while True:
         screen.fill(BG_COLOR)
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
+                return "exit"
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
-                    pygame.quit()
-                    sys.exit()
+                    return "menu"
                 if event.key == pygame.K_p and not game_over:
                     paused = not paused
                 elif event.key == pygame.K_r and game_over:
@@ -44,7 +38,7 @@ def main():
                         snake.change_direction(-1, 0)
                     elif event.key == pygame.K_RIGHT:
                         snake.change_direction(1, 0)
-        
+
         if not game_over and not paused:
             if not snake.move():
                 game_over = True
@@ -74,9 +68,38 @@ def main():
         elif game_over:
             game_over_text = font.render("Game Over! Presiona R para reiniciar", True, TEXT_COLOR)
             screen.blit(game_over_text, (SCREEN_WIDTH//2 - 180, SCREEN_HEIGHT//2 - 20))
-        
+
         pygame.display.update()
         clock.tick(SPEED)
+
+def main():
+    pygame.init()
+    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    pygame.display.set_caption("Snake Game")
+    
+    menu = MainMenu(screen)
+    sound = SoundManager()
+    font = pygame.font.Font(None, 36)
+    
+    game_over = False
+    paused = False
+    sound.play('background', loops=-1)  
+    
+    while True:
+        result = ""
+        while result == "":
+            menu.draw()
+            result = menu.handle_input()
+            pygame.time.wait(100)
+            
+        if result == "exit" or result == "cerrar":
+            pygame.quit()
+            sys.exit()
+        elif result == "jugar":
+            game_result = game_loop(screen)
+            if game_result == "exit":
+                pygame.quit()
+                sys.exit()
 
 if __name__ == "__main__":
     main()
