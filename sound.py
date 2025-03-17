@@ -4,18 +4,14 @@ from settings import *
 
 class SoundManager:
     def __init__(self):
-        mixer.init()
-        self.sounds = {
-            'eat': mixer.Sound('sounds/eat.wav'),
-            'game_over': mixer.Sound('sounds/game_over.wav'),
-            'background': mixer.Sound('sounds/background.wav')
-        }
-        self.set_volumes()
-        
-    def set_volumes(self):
-        self.sounds['eat'].set_volume(0.7)
-        self.sounds['game_over'].set_volume(0.8)
-        self.sounds['background'].set_volume(0.2)
+        pygame.mixer.init()
+        self.sounds = {}
+
+    def load_music(self, path):
+        pygame.mixer.music.load(path)
+
+    def play_music(self, loops=-1):
+        pygame.mixer.music.play(loops)
         
     def play(self, sound_name, loops=0):
         if sound_name in self.sounds:
@@ -24,3 +20,6 @@ class SoundManager:
     def stop(self, sound_name):
         if sound_name in self.sounds:
             self.sounds[sound_name].stop()
+
+    def play_sound(self, name):
+        self.sounds[name].play()
