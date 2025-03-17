@@ -13,3 +13,6 @@ TEXT_COLOR = (255, 255, 255)
 
 # Velocidad del juego
 SPEED = 10
+
+# Sonidos
+SOUND_ENABLED = True
