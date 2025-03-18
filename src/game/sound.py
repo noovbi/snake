@@ -27,11 +27,11 @@ class SoundManager:
 
     def play_music(self, loops=-1):
         pygame.mixer.music.play(loops)
-        
+
     def play(self, sound_name, loops=0):
         if sound_name in self.sounds:
             self.sounds[sound_name].play(loops=loops)
-            
+
     def stop(self, sound_name):
         if sound_name in self.sounds:
             self.sounds[sound_name].stop()
