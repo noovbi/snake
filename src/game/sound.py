@@ -1,5 +1,4 @@
 import pygame
-from pygame import mixer
 from settings import *
 
 class SoundManager:
