@@ -23,10 +23,12 @@ class SoundManager:
         else:
             print(f"Sonido {name} no encontrado!")
 
-    def load_music(self, path):
+    @staticmethod
+    def load_music(path):
         pygame.mixer.music.load(path)
 
-    def play_music(self, loops=-1):
+    @staticmethod
+    def play_music(loops=-1):
         pygame.mixer.music.play(loops)
         
     def play(self, sound_name, loops=0):
