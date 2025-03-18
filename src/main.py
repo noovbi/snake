@@ -9,7 +9,7 @@ def game_loop(screen, sound):
     snake = Snake()
     food = Food()
     font = pygame.font.Font(None, 36)
-    
+
     game_over = False
     paused = False
 
@@ -18,7 +18,7 @@ def game_loop(screen, sound):
 
     while True:
         screen.fill(BG_COLOR)
-        
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return "exit"
@@ -57,12 +57,12 @@ def game_loop(screen, sound):
         # Dibujar elementos siempre
         snake.draw(screen)
         food.draw(screen)
-        
+
         # Mostrar puntuación
         score = len(snake.body) - 1
         text = font.render(f"Puntuación: {score}", True, TEXT_COLOR)
         screen.blit(text, (10, 10))
-        
+
         if paused:
             pause_text = font.render("PAUSA - Presiona P para continuar", True, TEXT_COLOR)
             screen.blit(pause_text, (SCREEN_WIDTH//2 - 160, SCREEN_HEIGHT//2 - 20))
@@ -77,7 +77,7 @@ def main():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     pygame.display.set_caption("Snake Game")
-    
+
     menu = MainMenu(screen)
     sound = SoundManager()
     font = pygame.font.Font(None, 36)
@@ -86,17 +86,17 @@ def main():
     sound.load_sound('game_over', 'assets/game_over.wav')
 
     game_result = game_loop(screen, sound)
-    
+
     game_over = False
     paused = False
-    
+
     while True:
         result = ""
         while result == "":
             menu.draw()
             result = menu.handle_input()
             pygame.time.wait(100)
-            
+
         if result == "exit" or result == "cerrar":
             pygame.quit()
             sys.exit()
