@@ -22,7 +22,7 @@ def game_loop(screen, sound):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return "exit"
-            elif event.type == pygame.KEYDOWN:
+            if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     return "menu"
                 if event.key == pygame.K_p and not game_over:
