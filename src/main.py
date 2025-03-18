@@ -1,8 +1,8 @@
 import pygame, sys
 from settings import *
-from game import Snake, Food
-from sound import SoundManager
 from menu import MainMenu
+from sound import SoundManager
+from game import Snake, Food
 
 def game_loop(screen, sound):
     clock = pygame.time.Clock()
@@ -53,7 +53,7 @@ def game_loop(screen, sound):
                     snake.grow = True
                     food.randomize()
                     sound.play_sound('eat')
-        
+
         # Dibujar elementos siempre
         snake.draw(screen)
         food.draw(screen)
@@ -81,6 +81,11 @@ def main():
     menu = MainMenu(screen)
     sound = SoundManager()
     font = pygame.font.Font(None, 36)
+
+    sound.load_sound('eat', 'assets/eat.wav')
+    sound.load_sound('game_over', 'assets/game_over.wav')
+
+    game_result = game_loop(screen, sound)
     
     game_over = False
     paused = False

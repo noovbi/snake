@@ -5,7 +5,23 @@ from settings import *
 class SoundManager:
     def __init__(self):
         pygame.mixer.init()
-        self.sounds = {}
+        self.sounds = {
+            'eat': None,
+            'game_over': None,
+        }
+
+    def load_sound(self, name, path):
+        try:
+            self.sounds[name] = pygame.mixer.Sound(path)
+        except Exception as e:
+            print(f"Error cargando sonido {name}: {str(e)}")
+            self.sounds[name] = None
+
+    def play_sound(self, name):
+        if self.sounds.get(name):
+            self.sounds[name].play()
+        else:
+            print(f"Sonido {name} no encontrado!")
 
     def load_music(self, path):
         pygame.mixer.music.load(path)
