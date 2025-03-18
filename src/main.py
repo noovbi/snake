@@ -1,4 +1,5 @@
-import pygame, sys
+import pygame
+import sys
 from settings import *
 from menu import MainMenu
 from sound import SoundManager
