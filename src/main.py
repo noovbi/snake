@@ -105,7 +105,6 @@ def main():
             if game_result == "exit":
                 pygame.quit()
                 sys.exit()
-                sound.stop('background')
             sound.play_music() 
 
 if __name__ == "__main__":
