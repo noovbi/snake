@@ -97,7 +97,7 @@ def main():
             result = menu.handle_input()
             pygame.time.wait(100)
             
-        if result == "exit" or result == "cerrar":
+        if result in ("exit", "cerrar"):
             pygame.quit()
             sys.exit()
         elif result == "jugar":
