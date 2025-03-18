@@ -1,4 +1,5 @@
-import pygame, random
+import pygame
+import random
 from settings import *
 
 class Snake:
